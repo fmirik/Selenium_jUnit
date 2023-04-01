@@ -25,7 +25,7 @@ public class AE02 {
 
     @After
     public void tearDown(){
-        driver.close();
+        //driver.close();
     }
 
     @Test
@@ -44,14 +44,19 @@ public class AE02 {
         String expectedLogin = "Login to your account";
         Assert.assertTrue(actualLogin.contains(expectedLogin));
         //6. Enter correct email address and password
-        String email = "abc@deneme.com";
+        String email = "abc5@deneme.com";
         driver.findElement(By.xpath("//div[@class='login-form']//input[@name='email']")).sendKeys(email);
         driver.findElement(By.xpath("//input[@name='password']")).sendKeys("123456");
         //7. Click 'login' button
-        driver.findElement(By.xpath("//button[@data-qa='login-button']"));
+        driver.findElement(By.xpath("//button[@data-qa='login-button']")).click();
         //8. Verify that 'Logged in as username' is visible
-        driver.findElement(By.xpath(""))
+        String actualInfo = driver.findElement(By.xpath("//a[contains(.,'Logged in as')]")).getText();
+        String username = email.substring(0, email.indexOf("@"));
+        String expectedInfo = "Logged in as " + username;
+        Assert.assertTrue(actualInfo.contains(expectedInfo));
         //9. Click 'Delete Account' button
+        driver.findElement(By.xpath("//a[contains(.,'Delete Account')]")).click();
         //10. Verify that 'ACCOUNT DELETED!' is visible
+        Assert.assertTrue(driver.findElement(By.xpath("//b[.='Account Deleted!']")).isDisplayed());
     }
 }
