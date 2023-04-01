@@ -10,9 +10,8 @@ import org.openqa.selenium.edge.EdgeDriver;
 
 import java.time.Duration;
 
-public class AE02 {
-    //https://automationexercise.com/test_cases Test Case 2
-
+public class AE03 {
+    //Test Case 3: Login User with incorrect email and password
     WebDriver driver;
 
     @Before
@@ -25,11 +24,11 @@ public class AE02 {
 
     @After
     public void tearDown() {
-        //driver.close();
+        driver.close();
     }
 
     @Test
-    public void test02() {
+    public void test01() {
         //1. Launch browser
         //2. Navigate to url 'http://automationexercise.com'
         driver.get("http://automationexercise.com");
@@ -43,20 +42,16 @@ public class AE02 {
         String actualLogin = driver.findElement(By.xpath("//h2[.='Login to your account']")).getText();
         String expectedLogin = "Login to your account";
         Assert.assertTrue(actualLogin.contains(expectedLogin));
-        //6. Enter correct email address and password
+        //6. Enter incorrect email address and password
         String email = "abc5@deneme.com";
         driver.findElement(By.xpath("//div[@class='login-form']//input[@name='email']")).sendKeys(email);
         driver.findElement(By.xpath("//input[@name='password']")).sendKeys("123456");
         //7. Click 'login' button
         driver.findElement(By.xpath("//button[@data-qa='login-button']")).click();
-        //8. Verify that 'Logged in as username' is visible
-        String actualInfo = driver.findElement(By.xpath("//a[contains(.,'Logged in as')]")).getText();
-        String username = email.substring(0, email.indexOf("@"));
-        String expectedInfo = "Logged in as " + username;
-        Assert.assertTrue(actualInfo.contains(expectedInfo));
-        //9. Click 'Delete Account' button
-        driver.findElement(By.xpath("//a[contains(.,'Delete Account')]")).click();
-        //10. Verify that 'ACCOUNT DELETED!' is visible
-        Assert.assertTrue(driver.findElement(By.xpath("//b[.='Account Deleted!']")).isDisplayed());
+        //8. Verify error 'Your email or password is incorrect!' is visible
+        String actualMessage = driver.findElement(By.xpath("//p[.='Your email or password is incorrect!']")).getText();
+        String expectedMessage = "Your email or password is incorrect!";
+        Assert.assertTrue(actualMessage.contains(expectedMessage));
     }
+
 }
