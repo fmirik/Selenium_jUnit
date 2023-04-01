@@ -14,20 +14,22 @@ import java.time.Duration;
 public class AE01 {
     //https://automationexercise.com/test_cases Test Case 1
     WebDriver driver;
+
     @Before
-    public void setUp(){
+    public void setUp() {
         WebDriverManager.edgedriver().setup();
         driver = new EdgeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.manage().window().maximize();
     }
+
     @After
-    public void tearDown(){
+    public void tearDown() {
         driver.close();
     }
 
     @Test
-    public void test01(){
+    public void test01() {
         //1. Launch browser
         //2. Navigate to url 'http://automationexercise.com'
         driver.get("https://automationexercise.com");
@@ -54,9 +56,9 @@ public class AE01 {
         //9. Fill details: Title, Name, Email, Password, Date of birth
         driver.findElement(By.xpath("//input[@value='Mr']")).click();
         driver.findElement(By.xpath("//input[@id='password']")).sendKeys("Abc123456");
-        WebElement day =driver.findElement(By.xpath("//select[@id='days']"));
-        WebElement month =driver.findElement(By.xpath("//select[@id='months']"));
-        WebElement year =driver.findElement(By.xpath("//select[@id='years']"));
+        WebElement day = driver.findElement(By.xpath("//select[@id='days']"));
+        WebElement month = driver.findElement(By.xpath("//select[@id='months']"));
+        WebElement year = driver.findElement(By.xpath("//select[@id='years']"));
         Select dayDropDown = new Select(day);
         Select monthDropDown = new Select(month);
         Select yearDropDown = new Select(year);
@@ -88,7 +90,7 @@ public class AE01 {
         driver.findElement(By.xpath("//a[@data-qa='continue-button']")).click();
         //16. Verify that 'Logged in as username' is visible
         String actualLogin = driver.findElement(By.xpath("//a[contains(.,'Logged in as')]")).getText();
-        String expectedLogin = "Logged in as "+username;
+        String expectedLogin = "Logged in as " + username;
         //Assert.assertTrue(actualLogin.equalsIgnoreCase(expectedLogin));
         //17. Click 'Delete Account' button
         driver.findElement(By.xpath("//a[contains(.,'Delete Account')]")).click();
