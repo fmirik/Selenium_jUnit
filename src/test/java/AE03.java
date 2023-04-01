@@ -33,7 +33,7 @@ public class AE03 {
         //2. Navigate to url 'http://automationexercise.com'
         driver.get("http://automationexercise.com");
         //3. Verify that home page is visible successfully
-        WebElement homePage = driver.findElement(By.xpath("//i[@class='fa fa-home']"));
+        WebElement homePage = driver.findElement(By.xpath("//a[contains(.,'Home')]"));
         Assert.assertTrue(homePage.isDisplayed());
         //4. Click on 'Signup / Login' button
         WebElement singUp = driver.findElement(By.xpath("//a[@href='/login']"));

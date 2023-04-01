@@ -25,7 +25,7 @@ public class AE01 {
 
     @After
     public void tearDown() {
-        driver.close();
+        //driver.close();
     }
 
     @Test
@@ -34,7 +34,7 @@ public class AE01 {
         //2. Navigate to url 'http://automationexercise.com'
         driver.get("https://automationexercise.com");
         //3. Verify that home page is visible successfully
-        WebElement homePage = driver.findElement(By.xpath("//i[@class='fa fa-home']"));
+        WebElement homePage = driver.findElement(By.xpath(" //a[contains(.,'Home')]"));
         Assert.assertTrue(homePage.isDisplayed());
         //4. Click on 'Signup / Login' button
         WebElement singUp = driver.findElement(By.xpath("//a[@href='/login']"));
@@ -44,9 +44,10 @@ public class AE01 {
         String expected = "New User Signup!";
         Assert.assertEquals(actual, expected);
         //6. Enter name and email address
-        String username = "abc";
+        String username = "abc5";
+        String email = "abc5@sample.com";
         driver.findElement(By.xpath("//input[@name='name']")).sendKeys(username);
-        driver.findElement(By.xpath("//div[@class='signup-form']//input[@name='email']")).sendKeys("abc@abcefg4.com");
+        driver.findElement(By.xpath("//div[@class='signup-form']//input[@name='email']")).sendKeys(email);
         //7. Click 'Signup' button
         driver.findElement(By.xpath("//button[.='Signup']")).click();
         //8. Verify that 'ENTER ACCOUNT INFORMATION' is visible
@@ -91,7 +92,7 @@ public class AE01 {
         //16. Verify that 'Logged in as username' is visible
         String actualLogin = driver.findElement(By.xpath("//a[contains(.,'Logged in as')]")).getText();
         String expectedLogin = "Logged in as " + username;
-        //Assert.assertTrue(actualLogin.equalsIgnoreCase(expectedLogin));
+        Assert.assertTrue(actualLogin.equalsIgnoreCase(expectedLogin));
         //17. Click 'Delete Account' button
         driver.findElement(By.xpath("//a[contains(.,'Delete Account')]")).click();
         //18. Verify that 'ACCOUNT DELETED!' is visible and click 'Continue' button
