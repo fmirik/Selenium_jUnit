@@ -50,6 +50,7 @@ public class AE02 {
         //7. Click 'login' button
         driver.findElement(By.xpath("//button[@data-qa='login-button']"));
         //8. Verify that 'Logged in as username' is visible
+        driver.findElement(By.xpath(""))
         //9. Click 'Delete Account' button
         //10. Verify that 'ACCOUNT DELETED!' is visible
     }
