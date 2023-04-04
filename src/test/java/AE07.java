@@ -11,6 +11,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import java.time.Duration;
 
 public class AE07 {
+    //Test Case 7: Verify Test Cases Page
     WebDriver driver;
 
     @Before
