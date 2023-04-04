@@ -11,6 +11,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import java.time.Duration;
 
 public class AE06 {
+    //Test Case 6: Contact Us Form
     WebDriver driver;
 
     @Before
