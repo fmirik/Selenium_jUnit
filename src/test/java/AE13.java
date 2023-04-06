@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -13,19 +12,21 @@ import org.openqa.selenium.edge.EdgeOptions;
 import java.io.File;
 import java.time.Duration;
 
-public class AE11 {
+public class AE13 {
     /*
     https://automationexercise.com/test_cases
-    Test Case 11: Verify Subscription in Cart page
+    Test Case 13: Verify Product quantity in Cart
     1. Launch browser
     2. Navigate to url 'http://automationexercise.com'
     3. Verify that home page is visible successfully
-    4. Click 'Cart' button
-    5. Scroll down to footer
-    6. Verify text 'SUBSCRIPTION'
-    7. Enter email address in input and click arrow button
-    8. Verify success message 'You have been successfully subscribed!' is visible
+    4. Click 'View Product' for any product on home page
+    5. Verify product detail is opened
+    6. Increase quantity to 4
+    7. Click 'Add to cart' button
+    8. Click 'View Cart' button
+    9. Verify that product is displayed in cart page with exact quantity
      */
+
     WebDriver driver;
 
     @Before
@@ -44,28 +45,28 @@ public class AE11 {
     }
 
     @Test
-    public void test11() throws InterruptedException {
+    public void test13() throws InterruptedException {
         //1. Launch browser
         //2. Navigate to url 'http://automationexercise.com'
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         driver.get("http://automationexercise.com");
         //3. Verify that home page is visible successfully
         WebElement homePage = driver.findElement(By.xpath("//a[contains(.,'Home')]"));
         Assert.assertTrue(homePage.isDisplayed());
-        //4. Click 'Cart' button
-        driver.findElement(By.xpath("//a[@href='/view_cart']")).click();
-        //5. Scroll down to footer
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
-        //6. Verify text 'SUBSCRIPTION'
-        String pageBottom = driver.findElement(By.xpath("//h2[.='Subscription']")).getText();
-        Assert.assertEquals("SUBSCRIPTION", pageBottom);
-        //7. Enter email address in input and click arrow button
-        driver.findElement(By.xpath("//input[@id='susbscribe_email']")).sendKeys("abc5@sample.com");
-        driver.findElement(By.xpath("//button[@id='subscribe']")).click();
-        //8. Verify success message 'You have been successfully subscribed!' is visible
-        WebElement infoSubribed = driver.findElement(By.xpath("//div[@class='alert-success alert']"));
-        infoSubribed.isDisplayed();
-
+        //4. Click 'View Product' for any product on home page
+        driver.findElement(By.xpath("//a[@href='/products']")).click();
+        //5. Verify product detail is opened
+        driver.findElement(By.xpath("//a[@href='/product_details/1']")).click();
+        //6. Increase quantity to 4
+        driver.findElement(By.xpath("//input[@id='quantity']")).clear();
+        String quantity = "4";
+        driver.findElement(By.xpath("//input[@id='quantity']")).sendKeys(quantity);
+        //7. Click 'Add to cart' button
+        driver.findElement(By.xpath("//button[@class='btn btn-default cart']")).click();
+        //8. Click 'View Cart' button
+        driver.findElement(By.xpath("//u[.='View Cart']")).click();
+        //9. Verify that product is displayed in cart page with exact quantity
+        WebElement cartItemQuantity = driver.findElement(By.xpath("(//td[@class='cart_quantity'])[1]"));
+        Assert.assertEquals(quantity, cartItemQuantity.getText());
     }
 }

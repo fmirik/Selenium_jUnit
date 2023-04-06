@@ -43,8 +43,8 @@ public class AE07 {
     public void test07() throws InterruptedException {
         //1. Launch browser
         //2. Navigate to url 'http://automationexercise.com'
-        driver.get("http://automationexercise.com");
         Thread.sleep(2000);
+        driver.get("http://automationexercise.com");
         //3. Verify that home page is visible successfully
         WebElement homePage = driver.findElement(By.xpath("//a[contains(.,'Home')]"));
         Assert.assertTrue(homePage.isDisplayed());
