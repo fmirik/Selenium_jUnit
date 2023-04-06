@@ -13,7 +13,15 @@ import java.io.File;
 import java.time.Duration;
 
 public class AE07 {
-    //Test Case 7: Verify Test Cases Page
+    /*
+    https://automationexercise.com/test_cases
+    Test Case 7: Verify Test Cases Page
+    1. Launch browser
+    2. Navigate to url 'http://automationexercise.com'
+    3. Verify that home page is visible successfully
+    4. Click on 'Test Cases' button
+    5. Verify user is navigated to test cases page successfully
+     */
     WebDriver driver;
 
     @Before
@@ -30,6 +38,7 @@ public class AE07 {
     public void tearDown() {
         driver.close();
     }
+
     @Test
     public void test07() throws InterruptedException {
         //1. Launch browser
