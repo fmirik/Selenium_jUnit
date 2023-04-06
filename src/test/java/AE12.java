@@ -28,15 +28,15 @@ public class AE12 {
 
     @After
     public void tearDown() {
-        //driver.close();
+        driver.close();
     }
 
     @Test
     public void test12() throws InterruptedException {
         //1. Launch browser
         //2. Navigate to url 'http://automationexercise.com'
-        Thread.sleep(2000);
         driver.get("http://automationexercise.com");
+        Thread.sleep(2000);
         //3. Verify that home page is visible successfully
         WebElement homePage = driver.findElement(By.xpath("//a[contains(.,'Home')]"));
         Assert.assertTrue(homePage.isDisplayed());

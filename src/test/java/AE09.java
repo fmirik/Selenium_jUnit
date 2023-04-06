@@ -7,7 +7,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 
+import java.io.File;
 import java.time.Duration;
 import java.util.List;
 
@@ -18,7 +20,9 @@ public class AE09 {
     @Before
     public void setUp() {
         WebDriverManager.edgedriver().setup();
-        driver = new EdgeDriver();
+        EdgeOptions options = new EdgeOptions();
+        options.addExtensions(new File("./extension.crx"));//uBlock Origin Extension
+        driver = new EdgeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.manage().window().maximize();
     }
@@ -29,10 +33,11 @@ public class AE09 {
     }
 
     @Test
-    public void test09() {
+    public void test09() throws InterruptedException {
         //1. Launch browser
         //2. Navigate to url 'http://automationexercise.com'
         driver.get("http://automationexercise.com");
+        Thread.sleep(2000);
         //3. Verify that home page is visible successfully
         WebElement homePage = driver.findElement(By.xpath("//a[contains(.,'Home')]"));
         Assert.assertTrue(homePage.isDisplayed());
