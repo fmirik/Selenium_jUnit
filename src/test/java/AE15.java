@@ -15,6 +15,7 @@ import java.time.Duration;
 
 public class AE15 {
     /*
+    https://automationexercise.com/test_cases
     Test Case 15: Place Order: Register before Checkout
     1. Launch browser
     2. Navigate to url 'http://automationexercise.com'
