@@ -50,7 +50,7 @@ public class AE16 {
 
     @After
     public void tearDown() {
-        //driver.close();
+        driver.close();
     }
 
     @Test

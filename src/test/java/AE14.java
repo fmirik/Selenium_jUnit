@@ -52,7 +52,7 @@ public class AE14 {
 
     @After
     public void tearDown() {
-        //driver.close();
+        driver.close();
     }
 
     @Test
