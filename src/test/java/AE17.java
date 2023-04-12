@@ -34,7 +34,7 @@ public class AE17 {
         options.addExtensions(new File("./extension.crx"));//uBlock Origin Extension
         driver = new EdgeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        //driver.manage().window().maximize();
+        driver.manage().window().maximize();
     }
 
     @After
@@ -46,6 +46,7 @@ public class AE17 {
     public void test17() throws InterruptedException {
         //1. Launch browser
         //2. Navigate to url 'http://automationexercise.com'
+        Thread.sleep(3000);
         driver.get("http://automationexercise.com");
         //3. Verify that home page is visible successfully
         WebElement homePage = driver.findElement(By.xpath("//a[contains(.,'Home')]"));

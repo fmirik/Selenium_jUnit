@@ -33,18 +33,19 @@ public class AE18 {
         options.addExtensions(new File("./extension.crx"));//uBlock Origin Extension
         driver = new EdgeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        //driver.manage().window().maximize();
+        driver.manage().window().maximize();
     }
 
     @After
     public void tearDown() {
-        //driver.close();
+        driver.close();
     }
 
     @Test
     public void test18() throws InterruptedException {
         //1. Launch browser
         //2. Navigate to url 'http://automationexercise.com'
+        Thread.sleep(3000);
         driver.get("http://automationexercise.com");
         //3. Verify that categories are visible on left side bar
         WebElement categories = driver.findElement(By.xpath("//h2[.='Category']"));
