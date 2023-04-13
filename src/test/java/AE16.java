@@ -45,7 +45,7 @@ public class AE16 {
         options.addExtensions(new File("./extension.crx"));//uBlock Origin Extension
         driver = new EdgeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        //driver.manage().window().maximize();
+        driver.manage().window().maximize();
     }
 
     @After
