@@ -57,9 +57,11 @@ public class AE19 {
         driver.findElement(By.xpath("//a[@href='/brand_products/Polo']")).click();
         //6. Verify that user is navigated to brand page and brand products are displayed
         String brandPolo = driver.findElement(By.xpath("//h2[@class='title text-center']")).getText();
-
+        Assert.assertTrue(brandPolo.contains("POLO"));
         //7. On left side bar, click on any other brand link
+        driver.findElement(By.xpath("//a[@href='/brand_products/H&M']")).click();
         //8. Verify that user is navigated to that brand page and can see products
-
+        String brandHM = driver.findElement(By.xpath("//h2[@class='title text-center']")).getText();
+        Assert.assertTrue(brandHM.contains("H&M"));
     }
 }

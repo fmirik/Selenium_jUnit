@@ -45,7 +45,7 @@ public class AE20 {
     }
 
     @Test
-    public void test20(){
+    public void test20() throws InterruptedException {
         //1. Launch browser
         //2. Navigate to url 'http://automationexercise.com'
         Thread.sleep(3000);
