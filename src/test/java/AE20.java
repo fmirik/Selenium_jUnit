@@ -1,8 +1,10 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
@@ -53,9 +55,15 @@ public class AE20 {
         //3. Click on 'Products' button
         driver.findElement(By.xpath("//a[@href='/products']")).click();
         //4. Verify user is navigated to ALL PRODUCTS page successfully
+        String allProducts = driver.findElement(By.xpath("//div[@class='features_items']/h2")).getText();
+        Assert.assertTrue(allProducts.contains("ALL PRODUCTS"));
         //5. Enter product name in search input and click search button
+        driver.findElement(By.xpath("//input[@name='search']")).sendKeys("Dress"+ Keys.ENTER);
         //6. Verify 'SEARCHED PRODUCTS' is visible
+        String result = driver.findElement(By.xpath("//div[@class='features_items']/h2")).getText();
+        Assert.assertTrue(result.contains("SEARCHED PRODUCTS"));
         //7. Verify all the products related to search are visible
+
         //8. Add those products to cart
         //9. Click 'Cart' button and verify that products are visible in cart
         //10. Click 'Signup / Login' button and submit login details
