@@ -41,9 +41,11 @@ public class AE21 {
     }
 
     @Test
-    public void test21(){
+    public void test21() throws InterruptedException {
         //1. Launch browser
         //2. Navigate to url 'http://automationexercise.com'
+        Thread.sleep(3000);
+        driver.get("http://automationexercise.com");
         //3. Click on 'Products' button
         //4. Verify user is navigated to ALL PRODUCTS page successfully
         //5. Click on 'View Product' button
