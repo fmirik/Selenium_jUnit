@@ -6,11 +6,15 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
 
 import java.io.File;
 import java.time.Duration;
+import java.util.List;
 
 public class AE20 {
     /*
@@ -58,13 +62,25 @@ public class AE20 {
         String allProducts = driver.findElement(By.xpath("//div[@class='features_items']/h2")).getText();
         Assert.assertTrue(allProducts.contains("ALL PRODUCTS"));
         //5. Enter product name in search input and click search button
-        driver.findElement(By.xpath("//input[@name='search']")).sendKeys("Dress"+ Keys.ENTER);
+        driver.findElement(By.xpath("//input[@name='search']")).sendKeys("Dress");
+        driver.findElement(By.xpath("//button[@id='submit_search']")).click();
         //6. Verify 'SEARCHED PRODUCTS' is visible
         String result = driver.findElement(By.xpath("//div[@class='features_items']/h2")).getText();
         Assert.assertTrue(result.contains("SEARCHED PRODUCTS"));
         //7. Verify all the products related to search are visible
-
+        List<WebElement> search = driver.findElements(By.xpath("//div[@class='features_items']/div[@class='col-sm-4']"));
+        for (WebElement w:search) {
+            Assert.assertTrue(w.isDisplayed());
+        }
         //8. Add those products to cart
+        List<WebElement> addCart = driver.findElements(By.xpath("//div[@class='features_items']/div//div[@class='productinfo text-center']/a[.='Add to cart']"));
+
+        for (int i = 0; i < addCart.size(); i++) {
+            addCart.get(i).click();
+            Thread.sleep(5);
+            driver.findElement(By.xpath("//button[@class='btn btn-success close-modal btn-block']")).click();
+        }
+
         //9. Click 'Cart' button and verify that products are visible in cart
         //10. Click 'Signup / Login' button and submit login details
         //11. Again, go to Cart page
