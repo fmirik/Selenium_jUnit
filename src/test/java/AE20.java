@@ -47,7 +47,7 @@ public class AE20 {
 
     @After
     public void tearDown() {
-        //driver.close();
+        driver.close();
     }
 
     @Test
@@ -82,9 +82,50 @@ public class AE20 {
         }
 
         //9. Click 'Cart' button and verify that products are visible in cart
+        driver.findElement(By.xpath("//a[@href='/view_cart']")).click();
+        List<WebElement> cart = driver.findElements(By.xpath("//tbody/tr"));
+        for(WebElement w: cart){
+            Assert.assertTrue(w.isDisplayed());
+        }
         //10. Click 'Signup / Login' button and submit login details
+        WebElement singUp = driver.findElement(By.xpath("//a[@href='/login']"));
+        singUp.click();
+        String username = "abc5";
+        String email = "abc5@sample.com";
+        driver.findElement(By.xpath("//input[@name='name']")).sendKeys(username);
+        driver.findElement(By.xpath("//div[@class='signup-form']//input[@name='email']")).sendKeys(email);
+        driver.findElement(By.xpath("//button[.='Signup']")).click();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//input[@value='Mr']")).click();
+        driver.findElement(By.xpath("//input[@id='password']")).sendKeys("Abc123456");
+        WebElement day = driver.findElement(By.xpath("//select[@id='days']"));
+        WebElement month = driver.findElement(By.xpath("//select[@id='months']"));
+        WebElement year = driver.findElement(By.xpath("//select[@id='years']"));
+        Select dayDropDown = new Select(day);
+        Select monthDropDown = new Select(month);
+        Select yearDropDown = new Select(year);
+        dayDropDown.selectByValue("10");
+        monthDropDown.selectByValue("3");
+        yearDropDown.selectByValue("1990");
+        driver.findElement(By.xpath("//input[@id='first_name']")).sendKeys("Ali");
+        driver.findElement(By.xpath("//input[@id='last_name']")).sendKeys("Veli");
+        driver.findElement(By.xpath("//input[@id='company']")).sendKeys("No Company");
+        driver.findElement(By.xpath("//p[4]/input[@class='form-control']")).sendKeys("Adres");
+        driver.findElement(By.xpath("//p[5]/input[@class='form-control']")).sendKeys("Adres2");
+        driver.findElement(By.xpath("//option[.='Canada']")).click();
+        driver.findElement(By.xpath("//input[@id='state']")).sendKeys("Toronto");
+        driver.findElement(By.xpath("//input[@id='city']")).sendKeys("Clairlea");
+        driver.findElement(By.xpath("//input[@id='zipcode']")).sendKeys("12300");
+        driver.findElement(By.xpath("//input[@id='mobile_number']")).sendKeys("1231112233");
+        driver.findElement(By.xpath("(//button[@type='submit'])[1]")).click();
+        driver.findElement(By.xpath("//a[@data-qa='continue-button']")).click();
         //11. Again, go to Cart page
+        driver.findElement(By.xpath("//a[@href='/view_cart']")).click();
         //12. Verify that those products are visible in cart after login as well
+        List<WebElement> cartFinal = driver.findElements(By.xpath("//tbody/tr"));
+        for(WebElement w: cartFinal){
+            Assert.assertTrue(w.isDisplayed());
+        }
 
     }
 }
