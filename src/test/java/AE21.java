@@ -73,7 +73,6 @@ public class AE21 {
         WebElement message = driver.findElement(By.xpath("//span[.='Thank you for your review.']"));
         Assert.assertTrue(message.isDisplayed());
 
-
     }
 
 }
