@@ -1,8 +1,11 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 
@@ -47,12 +50,29 @@ public class AE21 {
         Thread.sleep(3000);
         driver.get("http://automationexercise.com");
         //3. Click on 'Products' button
+        driver.findElement(By.xpath("//a[@href='/products']")).click();
         //4. Verify user is navigated to ALL PRODUCTS page successfully
+        String allProducts = driver.findElement(By.xpath("//div[@class='features_items']/h2")).getText();
+        Assert.assertTrue(allProducts.contains("ALL PRODUCTS"));
         //5. Click on 'View Product' button
+        driver.findElement(By.xpath("//a[@href='/product_details/1']")).click();
         //6. Verify 'Write Your Review' is visible
+        String reviewBar = driver.findElement(By.xpath("//a[.='Write Your Review']")).getText();
+        System.out.println(reviewBar);
+        Assert.assertTrue(reviewBar.equalsIgnoreCase("Write Your Review"));
         //7. Enter name, email and review
+        String name = "Abc5";
+        String email = "abc5@sample.com";
+        String review = "Sample message";
+        driver.findElement(By.xpath("//input[@id='name']")).sendKeys(name);
+        driver.findElement(By.xpath("//input[@id='email']")).sendKeys(email);
+        driver.findElement(By.xpath("//textarea[@id='review']")).sendKeys(review);
         //8. Click 'Submit' button
+        driver.findElement(By.xpath("//button[@id='button-review']")).click();
         //9. Verify success message 'Thank you for your review.'
+        WebElement message = driver.findElement(By.xpath("//span[.='Thank you for your review.']"));
+        Assert.assertTrue(message.isDisplayed());
+
 
     }
 
