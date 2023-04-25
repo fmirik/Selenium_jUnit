@@ -1,8 +1,11 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 
@@ -45,6 +48,8 @@ public class AE25 {
         Thread.sleep(3000);
         driver.get("http://automationexercise.com");
         //3. Verify that home page is visible successfully
+        WebElement homePage = driver.findElement(By.xpath("//a[contains(.,'Home')]"));
+        Assert.assertTrue(homePage.isDisplayed());
         //4. Scroll down page to bottom
         //5. Verify 'SUBSCRIPTION' is visible
         //6. Click on arrow at bottom right side to move upward
