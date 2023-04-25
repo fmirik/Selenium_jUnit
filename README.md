@@ -2,7 +2,7 @@
 
 ## The main Frameworks included in the project:
 - Java JDK 11.0.18
-- Selenium Webdriver 4.8.3
+- Selenium Webdriver 4.9.0
 - jUnit 4.13.2
 
 (uBlock Extension v1.48.80)
