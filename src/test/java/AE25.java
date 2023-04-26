@@ -55,7 +55,12 @@ public class AE25 {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
         //5. Verify 'SUBSCRIPTION' is visible
+        WebElement info = driver.findElement(By.xpath("//h2[.='Subscription']"));
+        Assert.assertTrue(info.isDisplayed());
         //6. Click on arrow at bottom right side to move upward
+        driver.findElement(By.xpath("//i[@class='fa fa-angle-up']")).click();
         //7. Verify that page is scrolled up and 'Full-Fledged practice website for Automation Engineers' text is visible on screen
+        WebElement info2 = driver.findElement(By.xpath("//div[@id='slider-carousel']//div[@class='item active']//h2[.='Full-Fledged practice website for Automation Engineers']"));
+
     }
 }

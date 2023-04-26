@@ -1,8 +1,12 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 
@@ -44,9 +48,18 @@ public class AE26 {
         Thread.sleep(3000);
         driver.get("http://automationexercise.com");
         //3. Verify that home page is visible successfully
+        WebElement homePage = driver.findElement(By.xpath("//a[contains(.,'Home')]"));
+        Assert.assertTrue(homePage.isDisplayed());
         //4. Scroll down page to bottom
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+        Thread.sleep(1000);
         //5. Verify 'SUBSCRIPTION' is visible
+        WebElement info = driver.findElement(By.xpath("//h2[.='Subscription']"));
+        Assert.assertTrue(info.isDisplayed());
         //6. Scroll up page to top
+        js.executeScript("window.scrollTo(document.body.scrollHeight,0)");
+        Thread.sleep(1000);
         //7. Verify that page is scrolled up and 'Full-Fledged practice website for Automation Engineers' text is visible on screen
 
     }
