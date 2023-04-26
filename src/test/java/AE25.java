@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -51,6 +52,8 @@ public class AE25 {
         WebElement homePage = driver.findElement(By.xpath("//a[contains(.,'Home')]"));
         Assert.assertTrue(homePage.isDisplayed());
         //4. Scroll down page to bottom
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
         //5. Verify 'SUBSCRIPTION' is visible
         //6. Click on arrow at bottom right side to move upward
         //7. Verify that page is scrolled up and 'Full-Fledged practice website for Automation Engineers' text is visible on screen
